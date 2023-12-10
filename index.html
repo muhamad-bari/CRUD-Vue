@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Toko Mobil</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div id="app" class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Input Data Kendaraan</h2>
+            <form @submit.prevent="addKendaraan">
+                <div class="form-group">
+                    <label for="nama_mobil">Nama Mobil:</label>
+                    <input type="text" class="form-control" v-model="newKendaraan.nama_mobil" required>
+                </div>
+                <div class="form-group">
+                    <label for="merk">Merk Mobil:</label>
+                    <input type="text" class="form-control" v-model="newKendaraan.merk" required>
+                </div>
+                <div class="form-group">
+                    <label for="warna">Warna Mobil:</label>
+                    <input type="text" class="form-control" v-model="newKendaraan.warna" required>
+                </div>
+                <div class="form-group">
+                    <label for="nopol">Nomor Polisi:</label>
+                    <input type="text" class="form-control" v-model="newKendaraan.nopol" required>
+                </div>
+                <div class="form-group">
+                    <label for="harga">Harga:</label>
+                    <input type="number" class="form-control" v-model="newKendaraan.harga" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Tambah Kendaraan</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Daftar Kendaraan</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Mobil</th>
+                    <th>Merk Mobil</th>
+                    <th>Warna Mobil</th>
+                    <th>Nopol</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="kendaraan in kendaraanList" :key="kendaraan.id">
+                    <td>{{ kendaraan.id }}</td>
+                    <td>{{ kendaraan.nama_mobil }}</td>
+                    <td>{{ kendaraan.merk }}</td>
+                    <td>{{ kendaraan.warna }}</td>
+                    <td>{{ kendaraan.nopol }}</td>
+                    <td>{{ kendaraan.harga }}</td>
+                    <td>
+                        <button @click="deleteKendaraan(kendaraan.id)" class="btn btn-danger">Hapus</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
